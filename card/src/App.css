@@ -1,0 +1,159 @@
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url('https://i.makeagif.com/media/12-30-2015/vpTH0P.gif'); 
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.flashcard-container {
+  text-align: center;
+  
+}
+
+.flashcard {
+  width: 350px;
+  height: 200px;
+  margin-left: 200px;
+  margin-bottom: 20px;
+  perspective: 1000px;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative; 
+  overflow: hidden; 
+}
+
+.flashcard-inner {
+  width: 100%;
+  height: 100%;
+  color: #0b0a0a;
+  transition: transform 0.6s ease-in-out;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.flashcard.flip .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
+.flashcard-front,
+.flashcard-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+}
+
+.flashcard-front {
+  background-image: url('https://cdn.dribbble.com/users/3779660/screenshots/7136514/media/5693498030938ec696476d06182fa09b.gif'); 
+}
+
+.flashcard-back {
+  background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/disp/b2c73d31468859.5655ebaf55a73.gif'); /* Replace with your image path */
+  transform: rotateY(180deg);
+}
+
+/* Optional styling for text over the background image */
+.flashcard-front,
+.flashcard-back {
+  color: #020202; /* Text color for better visibility */
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional text shadow */
+}
+
+.flashcard:hover {
+  transform: rotateX(10deg) rotateY(10deg);
+  box-shadow: 0 15px 25px rgba(103, 208, 246, 0.3);
+}
+
+
+.flashcard-back {
+  transform: rotateY(180deg);
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.buttons button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* New CSS for Card Management */
+.manage-cards,
+.edit-card {
+  margin-top: 10px;
+}
+h3{
+  color: white;
+  text-decoration: underline;
+  text-decoration-color: white;
+  size: 4rem;
+}
+input[type="text"] {
+  padding: 10px;
+  margin-right: 10px;
+  margin-bottom: 125px;
+  border: 2px solid #0b0a0a;
+  border-radius: 5px;
+  width: 300px;
+}
+
+button {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #6b08ec;
+}
+
+.flashcard-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.flashcard-list li {
+  margin-bottom: 10px;
+  display: flex;
+  color: #fff;
+  justify-content: space-between;
+}
+
+.flashcard-list button {
+  background-color: #da0d21;
+}
+
+.flashcard-list button:hover {
+  background-color: #f50820;
+}
