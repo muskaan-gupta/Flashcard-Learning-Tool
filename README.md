@@ -9,4 +9,5 @@ Next/Previous Navigation: Allow users to navigate through the set of flashcards 
 Add Flashcards: Insert new flashcards, including the question and answer.
 Edit Flashcards: Update the content of existing flashcards.
 Delete Flashcards: Remove flashcards from the set.
-![Screenshot (40)](https://github.com/user-attachments/assets/42a08a9a-5907-493e-9989-13f6f590acb6)
+![Screenshot (38)](https://github.com/user-attachments/assets/696ef583-5507-4e4c-89dd-2818101588fa)
+
