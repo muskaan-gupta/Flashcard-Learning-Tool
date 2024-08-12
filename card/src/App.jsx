@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
 
 function App() {
-  const [flashcards, setFlashcards] = useState([
-    { id: 1, front: 'What is the capital of France?', back: 'Paris' },
-    { id: 2, front: 'What is 2 + 2?', back: '4' },
-    { id: 3, front: 'What is the largest ocean?', back: 'Pacific Ocean' }
-  ]);
-
+  const [flashcards, setFlashcards] = useState([]);
   const [currentCard, setCurrentCard] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [newCard, setNewCard] = useState({ front: '', back: '' });
   const [editMode, setEditMode] = useState(false);
   const [editedCard, setEditedCard] = useState(null);
+
+  // Fetch flashcards from the backend when the component mounts
+  useEffect(() => {
+    axios.get('http://localhost:5000/flashcards')
+      .then(response => {
+        setFlashcards(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the flashcards!', error);
+      });
+  }, []);
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
@@ -34,20 +41,28 @@ function App() {
 
   const handleAddCard = () => {
     if (newCard.front && newCard.back) {
-      const newFlashcard = {
-        id: flashcards.length + 1,
-        ...newCard
-      };
-      setFlashcards([...flashcards, newFlashcard]);
-      setNewCard({ front: '', back: '' });
+      axios.post('http://localhost:5000/flashcards', newCard)
+        .then(response => {
+          setFlashcards([...flashcards, { ...newCard, id: response.data.insertId }]);
+          setNewCard({ front: '', back: '' });
+        })
+        .catch(error => {
+          console.error('There was an error adding the flashcard!', error);
+        });
     }
   };
 
   const handleDeleteCard = (id) => {
-    setFlashcards(flashcards.filter(card => card.id !== id));
-    if (currentCard > 0) {
-      setCurrentCard(currentCard - 1);
-    }
+    axios.delete(`http://localhost:5000/flashcards/${id}`)
+      .then(() => {
+        setFlashcards(flashcards.filter(card => card.id !== id));
+        if (currentCard > 0) {
+          setCurrentCard(currentCard - 1);
+        }
+      })
+      .catch(error => {
+        console.error('There was an error deleting the flashcard!', error);
+      });
   };
 
   const handleEditCard = (id) => {
@@ -57,11 +72,17 @@ function App() {
   };
 
   const handleSaveEdit = () => {
-    setFlashcards(flashcards.map(card =>
-      card.id === editedCard.id ? editedCard : card
-    ));
-    setEditMode(false);
-    setEditedCard(null);
+    axios.put(`http://localhost:5000/flashcards/${editedCard.id}`, editedCard)
+      .then(() => {
+        setFlashcards(flashcards.map(card =>
+          card.id === editedCard.id ? editedCard : card
+        ));
+        setEditMode(false);
+        setEditedCard(null);
+      })
+      .catch(error => {
+        console.error('There was an error updating the flashcard!', error);
+      });
   };
 
   const handleCancelEdit = () => {
