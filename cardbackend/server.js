@@ -2,66 +2,86 @@ const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 
 const app = express();
-const port = 5173; 
+const PORT = 5000;
 
+// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '', 
-  database: 'flashcards_db' 
-});
-
-connection.connect(err => {
-  if (err) throw err;
-  console.log('Connected to MySQL database');
+const db = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
 
+db.connect(err => {
+  if (err) {
+    throw err;
+  }
+  console.log('MySQL Connected...');
+});
+
+const cors = require('cors');
+app.use(cors({
+  origin: 'http://localhost:5173', 
+  credentials: true
+}));
+
+// Routes
+// Get All Flashcards
 app.get('/flashcards', (req, res) => {
-  connection.query('SELECT * FROM flashcards', (err, results) => {
+  const sql = 'SELECT * FROM flashcards';
+  db.query(sql, (err, result) => {
     if (err) throw err;
-    res.json(results);
+    res.send(result);
+  });
+});
+
+// Get Single Flashcard by ID
+app.get('/flashcards/:id', (req, res) => {
+  const sql = 'SELECT * FROM flashcards WHERE id = ?';
+  db.query(sql, [req.params.id], (err, result) => {
+    if (err) throw err;
+    res.send(result[0]);
   });
 });
 
 
 app.post('/flashcards', (req, res) => {
-  const { front, back, frontImage, backImage } = req.body;
-  const query = 'INSERT INTO flashcards (front, back, frontImage, backImage) VALUES (?, ?, ?, ?)';
-  connection.query(query, [front, back, frontImage, backImage], (err, results) => {
+  const sql = 'INSERT INTO flashcards SET ?';
+  const flashcard = req.body;
+  db.query(sql, flashcard, (err, result) => {
     if (err) throw err;
-    res.json({ id: results.insertId });
+    res.send(result);
   });
 });
 
 
 app.put('/flashcards/:id', (req, res) => {
-  const { id } = req.params;
-  const { front, back, frontImage, backImage } = req.body;
-  const query = 'UPDATE flashcards SET front = ?, back = ?, frontImage = ?, backImage = ? WHERE id = ?';
-  connection.query(query, [front, back, frontImage, backImage, id], (err) => {
+  const sql = 'UPDATE flashcards SET ? WHERE id = ?';
+  const flashcard = req.body;
+  db.query(sql, [flashcard, req.params.id], (err, result) => {
     if (err) throw err;
-    res.sendStatus(200);
+    res.send(result);
   });
 });
 
 
 app.delete('/flashcards/:id', (req, res) => {
-  const { id } = req.params;
-  const query = 'DELETE FROM flashcards WHERE id = ?';
-  connection.query(query, [id], (err) => {
+  const sql = 'DELETE FROM flashcards WHERE id = ?';
+  db.query(sql, [req.params.id], (err, result) => {
     if (err) throw err;
-    res.sendStatus(200);
+    res.send(result);
   });
-  
 });
 
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

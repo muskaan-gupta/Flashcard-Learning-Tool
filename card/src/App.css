@@ -4,7 +4,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   margin: 0;
   background-image: url('https://i.makeagif.com/media/12-30-2015/vpTH0P.gif'); 
   background-size: cover; 
@@ -76,7 +75,7 @@ body {
 
 .flashcard:hover {
   transform: rotateX(10deg) rotateY(10deg);
-  box-shadow: 0 15px 25px rgba(103, 208, 246, 0.3);
+  box-shadow: 0 15px 25px rgba(132, 222, 255, 0.3);
 }
 
 
@@ -114,11 +113,12 @@ h3{
   text-decoration: underline;
   text-decoration-color: white;
   size: 4rem;
+  
 }
 input[type="text"] {
   padding: 10px;
   margin-right: 10px;
-  margin-bottom: 125px;
+  margin-bottom: 100px;
   border: 2px solid #0b0a0a;
   border-radius: 5px;
   width: 300px;

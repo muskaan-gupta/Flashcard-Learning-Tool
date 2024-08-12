@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import './App.css';
-import axios from 'axios';
-
 
 function App() {
   const [flashcards, setFlashcards] = useState([
-    // { id: 1, front: 'What is the capital of France?', back: 'Paris' },
-    // { id: 2, front: 'What is 2 + 2?', back: '4' },
-    // { id: 3, front: 'What is the largest ocean?', back: 'Pacific Ocean' }
+    { id: 1, front: 'What is the capital of France?', back: 'Paris' },
+    { id: 2, front: 'What is 2 + 2?', back: '4' },
+    { id: 3, front: 'What is the largest ocean?', back: 'Pacific Ocean' }
   ]);
 
   const [currentCard, setCurrentCard] = useState(0);
@@ -15,17 +13,6 @@ function App() {
   const [newCard, setNewCard] = useState({ front: '', back: '' });
   const [editMode, setEditMode] = useState(false);
   const [editedCard, setEditedCard] = useState(null);
-
-  useEffect(() => {
-    
-    axios.get('http://localhost:5173/flashcards')
-      .then(response => {
-        setFlashcards(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching flashcards:', error);
-      });
-  }, []);
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
@@ -83,8 +70,6 @@ function App() {
   };
 
   return (
-
-    
     <div className="flashcard-container">
       <div className="manage-cards">
         <h3>Add a New Flashcard</h3>
@@ -117,7 +102,6 @@ function App() {
         <button onClick={handlePrev} disabled={currentCard === 0}>Previous</button>
         <button onClick={handleNext} disabled={currentCard === flashcards.length - 1}>Next</button>
       </div>
-      
 
       {editMode && (
         <div className="edit-card">
@@ -142,7 +126,7 @@ function App() {
       <div className="flashcard-list">
         <h3>Flashcards</h3>
         <ul>
-          {flashcards.map((card, index) => (
+          {flashcards.map((card) => (
             <li key={card.id}>
               {card.front} - {card.back}
               <button onClick={() => handleEditCard(card.id)}>Edit</button>
