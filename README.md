@@ -1,13 +1,57 @@
-# Flashcard-Learning-Tool
+# ⚡ FlashLearn — Your Personal Flashcard Learning Assistant
 an interactive study tool that allows users to review and memorize information with digital flashcards. Users can flip cards to reveal answers and navigate through the set using "Next" and "Previous" buttons using React, Used MySQL to store the flashcards,.  
 
-Flashcard Functionality:
+**FlashLearn** is a smart, responsive flashcard learning platform that helps you master any subject using intelligent spaced repetition and performance tracking. Whether you're prepping for exams or learning something new, FlashLearn adapts to your pace and boosts retention.
 
-Display Flashcards: Present flashcards one at a time, with a question or term on the front and the answer or definition on the back.
-Flip Card: Implement a feature that allows users to click on a flashcard to flip it and reveal the answer.
-Next/Previous Navigation: Allow users to navigate through the set of flashcards using "Next" and "Previous" buttons.
-Add Flashcards: Insert new flashcards, including the question and answer.
-Edit Flashcards: Update the content of existing flashcards.
-Delete Flashcards: Remove flashcards from the set.
-![Screenshot (38)](https://github.com/user-attachments/assets/696ef583-5507-4e4c-89dd-2818101588fa)
+---
+
+## ✨ Key Features
+
+📝 **Create Custom Flashcards**  
+Design personalized flashcards with text, images, and formatting to suit your study needs.
+
+🧠 **Smart Learning Algorithm**  
+Utilizes a spaced repetition technique to show cards at optimal intervals for long-term memory retention.
+
+📊 **Track Your Progress**  
+Stay motivated with insightful analytics on your total cards, likes, comments, and study history.
+
+📋 **Clean Dashboard**  
+Get a quick overview of your activity with recent flashcards, stats, and easy navigation.
+
+📱 **Fully Responsive UI**  
+Enjoy a sleek and accessible experience on any device — desktop, tablet, or mobile.
+
+---
+
+## 🖼️ Preview
+
+### 🔹 Home Page
+![FlashLearn Home](![Screenshot (10)](https://github.com/user-attachments/assets/a5774dc9-94bf-4db4-a660-36aab4cbda7f)
+)
+
+### 🔹 User Dashboard
+![FlashLearn Dashboard](./path-to-your-screenshot/0bb5d429-3c6b-4b4a-926d-c13f3ffc0c4f.png)
+
+---
+
+
+## 🧪 Tech Stack
+
+### Frontend
+- React.js
+- Tailwind CSS
+- ShadeCN
+
+### Backend
+- Node.js + Express.js
+- MongoDB + Mongoose
+- Cloudinary + Multer (file uploads)
+
+### Tools & DevOps
+- Git, GitHub
+- Render (Deployment)
+- Postman (API testing)
+
+---
 
