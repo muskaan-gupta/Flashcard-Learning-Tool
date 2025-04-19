@@ -1,5 +1,4 @@
 # ⚡ FlashLearn — Your Personal Flashcard Learning Assistant
-an interactive study tool that allows users to review and memorize information with digital flashcards. Users can flip cards to reveal answers and navigate through the set using "Next" and "Previous" buttons using React, Used MySQL to store the flashcards,.  
 
 **FlashLearn** is a smart, responsive flashcard learning platform that helps you master any subject using intelligent spaced repetition and performance tracking. Whether you're prepping for exams or learning something new, FlashLearn adapts to your pace and boosts retention.
 
