@@ -1,17 +1,20 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import userRoutes from "./routes/user.route.js"; // Corrected the import path
+import cardRoutes from "./routes/card.route.js";
 
 const app = express();
 const corsOptions = {
-  origin: "https://you-view-teal.vercel.app", 
+  origin: "http://localhost:5173",
   methods: ["POST", "GET", "PUT", "DELETE", "PATCH"],
   credentials: true, // allows cookies and authorization headers
 };
 
 // Apply CORS with the specified options
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // handle preflight requests
+app.use(cookieParser());
+//.options("*", cors(corsOptions)); // handle preflight requests
 
 app.use(express.json({ limit: "20kb" }));
 app.use(express.urlencoded({ extended: true, limit: "20kb" }));
@@ -27,9 +30,9 @@ app.get("/", (req, res) => {
   res.send("Backend is running!");
 });
 
+// Use the corrected user routes
+app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/cards", cardRoutes); // Use the card routes
 
-// Import and apply routes
-import userRouter from "./routes/user.routes.js";
-app.use("/api/v1/users", userRouter);
 
 export { app };

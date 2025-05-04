@@ -7,6 +7,9 @@ import { Checkbox } from "../../ui/checkbox";
 import { useToast } from "../../../hooks/use-toast";
 import { Eye, EyeOff, ArrowRight } from "lucide-react";
 import AuthLayout from "../Authlayout";
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "@/utils/axiosInstance";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -15,33 +18,50 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
-      toast({
-        title: "Error",
-        description: "Please fill in all fields",
-        variant: "destructive",
-      });
-      return;
-    }
-
     
     setIsLoading(true);
-    
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const response = await axiosInstance.post("/users/login", {
+        email,
+        password,
+      });
+  
+      const { accessToken, refreshToken } = response.data.data;
+          localStorage.setItem("accessToken", accessToken);
+          localStorage.setItem("refreshToken", refreshToken);
+  
+      // Fetch user profile
+      const profileResponse = await axiosInstance.get("/users/getCurrentUser", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      localStorage.setItem("user", JSON.stringify(profileResponse.data.data));
+
       toast({
         title: "Success!",
         description: "You have been logged in successfully.",
       });
-      setIsLoading(false);
       // Redirect to dashboard or home page
-    }, 1500);
+      navigate("/dashboard");
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Error",
+        description: error.response?.data?.message || "Something went wrong",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
-
+  
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };

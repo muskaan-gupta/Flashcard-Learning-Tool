@@ -28,12 +28,6 @@ const Index = () => {
               Create Account
             </Link>
           </Button>
-
-          <Button asChild variant="secondary" size="lg" className="px-8">
-            <Link to="/dashboard">
-              Go to Dashboard
-            </Link>
-          </Button>
         </div>
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">

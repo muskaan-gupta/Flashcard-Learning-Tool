@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { useToast } from "../hooks/use-toast";
+import axiosInstance from "@/utils/axiosInstance";
 
 const CreateCard = () => {
   const { toast } = useToast();
@@ -13,11 +14,29 @@ const CreateCard = () => {
     backContent: "",
   });
 
-  const handleCreate = () => {
-    toast({
-      title: "Card Created",
-      description: "Your new card has been created successfully.",
-    });
+  const handleCreate = async () => {
+    try {
+      const response = await axiosInstance.post("/cards/", {
+        title: cardData.title,
+        frontContent: cardData.frontContent,
+        backContent: cardData.backContent,
+      image: null, // Add image handling if needed
+      tags: [], // Add tag handling if needed
+      isPublic: true, // Set to true or false based on your requirements
+      });
+      toast({
+        title: "Card Created",
+        description: "Your new card has been created successfully.",
+      });
+      setCardData({ title: "", frontContent: "", backContent: "" });
+    } catch (error) {
+      console.error("Error creating card:", error);
+      toast({
+        title: "Error",
+        description: "Failed to create the card.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (

@@ -1,19 +1,21 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
 import { useToast } from "../../../hooks/use-toast";
 import { Eye, EyeOff, ArrowRight } from "lucide-react";
 import AuthLayout from "../Authlayout";
+import axiosInstance from "@/utils/axiosInstance";
 
 const Signup = () => {
-  const [name, setName] = useState("");
+  const [username, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const getPasswordStrength = () => {
     if (!password) return { strength: "", color: "" };
@@ -32,7 +34,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!name || !email || !password) {
+    if (!username || !email || !password) {
       toast({
         title: "Error",
         description: "Please fill in all fields",
@@ -50,17 +52,29 @@ const Signup = () => {
       return;
     }
 
-    setIsLoading(true);
-
-    // Simulate API call
-    setTimeout(() => {
-      toast({
-        title: "Account created!",
-        description: "Welcome to FlashLearn. Let's start learning!",
+    
+    
+    try {
+      setIsLoading(true);
+      const response=await axiosInstance.post("/users/register", {
+        username,
+        email,
+        password,
       });
+      console.log(response.data);
+      navigate("/dashboard");
+
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Error",
+        description: error.response?.data?.message || "Something went wrong",
+        variant: "destructive",
+      });
+    }
+    finally {
       setIsLoading(false);
-      // Here you would typically redirect or update auth state
-    }, 1500);
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -74,15 +88,15 @@ const Signup = () => {
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="name">Full Name</Label>
+          <Label htmlFor="username">UserName</Label>
           <Input
-            id="name"
+            id="username"
             type="text"
             placeholder="John Doe"
-            value={name}
+            value={username}
             onChange={(e) => setName(e.target.value)}
             className="focus-ring"
-            autoComplete="name"
+            autoComplete="username"
             required
           />
         </div>

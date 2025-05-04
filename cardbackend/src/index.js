@@ -5,6 +5,14 @@ import { app } from "./app.js";
 dotenv.config({
   path: "./env",
 });
+
+// Middleware to handle CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 dbconnect().then(() => {
   app.on("error", (error) => {
     console.error("Error :", error);

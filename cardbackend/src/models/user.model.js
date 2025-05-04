@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema(
   {
@@ -9,54 +9,46 @@ const userSchema = new mongoose.Schema(
       required: true,
       lowercase: true,
       unique: true,
-      trim: true,
-      index: true, //for optimum searching
+      trim: true, // Valid usage of trim
+      index: true,
     },
     email: {
       type: String,
       required: true,
       lowercase: true,
       unique: true,
-      trim: true,
+      trim: true, // Valid usage of trim
+      match: [/.+@.+\..+/, "Please enter a valid email address"],
+      index: true,
     },
     fullname: {
       type: String,
-      required: true,
-      trim: true,
+      trim: true, // Valid usage of trim
       index: true,
     },
     avatar: {
-      //from cloudinary url where our images is stored
       type: String,
-      required: true,
-    },
-    coverImage: {
-      //from cloudinary url
-      type: String,
+      default: "https://i.imgur.com",
     },
     password: {
       type: String,
       required: [true, "Password is required"],
+      minlength: [6, "Password must be at least 6 characters long"],
     },
     refreshToken: {
       type: String,
+      default: null,
     },
-    watchHistory: [
-      {
-        type: String,
-        default: [],
-      },
-    ],
+    bio: {
+      type: String,
+      default: "Hello, I am using this app",
+      trim: true, // Valid usage of trim
+    },
   },
   {
     timestamps: true,
-  },
-  { versionKey: false }
+  }
 );
-
-//some hooks or middlewares of mongoose are used
-//pre is used as a middleware which performs the particuar task before any event that is going to happen.
-//here it encrypt the password just before it is saved in db.
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
@@ -76,32 +68,35 @@ userSchema.methods.isPasswordCorrect = async function (password) {
 };
 
 //jwt tokens
-
 userSchema.methods.generateAccessTokens = async function () {
-  return await jwt.sign(
-    {
-      _id: this._id,
-      // email: this.email,
-      // username: this.username,
-      // fullname: this.fullname,
-    },
-    process.env.ACCESS_TOKEN_SECRET,
-    {
-      expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
-    }
-  );
+  try {
+    const token = await jwt.sign(
+      { _id: this._id },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
+    );
+    console.log("Access Token:", token); // Debugging
+    return token;
+  } catch (error) {
+    console.error("Error generating access token:", error);
+    throw error;
+  }
 };
 
 userSchema.methods.generateRefreshTokens = async function () {
-  return await jwt.sign(
-    {
-      _id: this._id,
-    },
-    process.env.REFRESH_TOKEN_SECRET,
-    {
-      expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
-    }
-  );
+  try {
+    const token = await jwt.sign(
+      { _id: this._id },
+      process.env.REFRESH_TOKEN_SECRET,
+      { expiresIn: process.env.REFRESH_TOKEN_EXPIRY }
+    );
+    console.log("Refresh Token:", token); // Debugging
+    return token;
+  } catch (error) {
+    console.error("Error generating refresh token:", error);
+    throw error;
+  }
 };
+
 
 export const User = mongoose.model("User", userSchema);

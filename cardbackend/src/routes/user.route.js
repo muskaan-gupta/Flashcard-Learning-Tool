@@ -1,9 +1,5 @@
 import { Router } from "express";
-//import { logOutUser, registeruser } from "../controllers/user.controllers.js";
-//import { loginUser } from "../controllers/user.controllers.js";
-//for handling the files
-import { upload } from "../middlewares/multer.middleware.js";
-import { verifiedJWT } from "../middlewares/auth.middleware.js";
+import { verifiedJWT } from "../middleware/auth.middleware.js";
 import {
   registeruser,
   loginUser,
@@ -15,29 +11,14 @@ import {
   updateCoverImage,
   getCurrentUser,
   getUserProfile,
-  getWatchHistory,
-  getUploadedVideos,
-} from "../controllers/user.controllers.js";
+  getUserDashboardData,
+} from "../controllers/userController.js";
+import { upload } from "../middleware/multer.middleware.js";
+
 const router = Router();
-
-router.route("/register").post(
-  //files handling using multer middleware
-  upload.fields([
-    {
-      name: "avatar",
-      maxCount: 1,
-    },
-    {
-      name: "coverImage",
-      maxCount: 1,
-    },
-  ]),
-  registeruser
-);
-//https://localhost:5000/users/register
-
+router.route("/dashboard-data").get(verifiedJWT, getUserDashboardData);
+router.route("/register").post(registeruser);
 router.route("/login").post(loginUser);
-//verifiedJWT is used as a middleware
 router.route("/logout").post(verifiedJWT, logOutUser);
 router.route("/refresh-token").post(refreshAccessToken);
 router.route("/updatePassword").post(verifiedJWT, updatePassword);
@@ -50,10 +31,8 @@ router
 
 router
   .route("/updateCoverImage")
-  .patch(verifiedJWT, upload.single("avatar"), updateCoverImage);
+  .patch(verifiedJWT, upload.single("coverImage"), updateCoverImage);
 
-//for request coming from params
-router.route("/c/:username").get(verifiedJWT, getUserProfile);
-router.route("/getWatchHistory").get(verifiedJWT, getWatchHistory);
-router.route("/getUploadedVideo").get(verifiedJWT, getUploadedVideos);
+router.route("/c/:username").get(getUserProfile);
+
 export default router;
