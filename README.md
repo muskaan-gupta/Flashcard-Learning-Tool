@@ -1,46 +1,44 @@
 # ⚡ FlashLearn — Your Personal Flashcard Learning Assistant
+FlashLearn is a **responsive study tool** built with flip-style flashcards to help users learn more effectively. Users can **create**, **like**, **delete**, and **explore** flashcards across topics — all while managing their own profile. It’s a clean, intuitive interface designed to make studying engaging and organized.
 
-**FlashLearn** is a smart, responsive flashcard learning platform that helps you master any subject using intelligent spaced repetition and performance tracking. Whether you're prepping for exams or learning something new, FlashLearn adapts to your pace and boosts retention.
+## ✨ Features
+
+### 🧠 Flashcards
+- Create flashcards with questions and answers
+- Flip animation for learning through active recall
+- Like your own cards for marking important ones
+- Delete cards you no longer need
+
+### 🔍 Explore Page
+- View **all flashcards created by any user**
+- No access to individual user details or profiles
+- Promotes open learning without compromising privacy
+
+### 👤 Profile Management
+- Update your name, email, and Bio
+- View only **your own** flashcards under your profile
+
+### 📱 Fully Responsive
+- Works smoothly across desktops, tablets, and mobile devices
+
+## 📸 Screenshots
+
+### 🏠 Home Page
+![Home Page](https://github.com/user-attachments/assets/1c16e33b-30fd-4c2b-8d77-c7a6755f09be)
+
+### 🏠 Dashboard
+![Dashboard](https://github.com/user-attachments/assets/0b1918ac-1f9f-4826-bb56-0b34bde51fb7)
+
+### 🌐 Explore Page
+![Explore](https://github.com/user-attachments/assets/96decc44-3d14-4092-8fa7-7d779e6e16da)
 
 ---
-
-## ✨ Key Features
-
-📝 **Create Custom Flashcards**  
-Design personalized flashcards with text, images, and formatting to suit your study needs.
-
-🧠 **Smart Learning Algorithm**  
-Utilizes a spaced repetition technique to show cards at optimal intervals for long-term memory retention.
-
-📊 **Track Your Progress**  
-Stay motivated with insightful analytics on your total cards, likes, comments, and study history.
-
-📋 **Clean Dashboard**  
-Get a quick overview of your activity with recent flashcards, stats, and easy navigation.
-
-📱 **Fully Responsive UI**  
-Enjoy a sleek and accessible experience on any device — desktop, tablet, or mobile.
-
----
-
-## 🖼️ Preview
-
-### 🔹 Home Page
-![FlashLearn Home](![Screenshot (10)](https://github.com/user-attachments/assets/a5774dc9-94bf-4db4-a660-36aab4cbda7f)
-)
-
-### 🔹 User Dashboard
-![FlashLearn Dashboard](./path-to-your-screenshot/0bb5d429-3c6b-4b4a-926d-c13f3ffc0c4f.png)
-
----
-
 
 ## 🧪 Tech Stack
 
 ### Frontend
 - React.js
 - Tailwind CSS
-- ShadeCN
 
 ### Backend
 - Node.js + Express.js
@@ -51,6 +49,7 @@ Enjoy a sleek and accessible experience on any device — desktop, tablet, or mo
 - Git, GitHub
 - Render (Deployment)
 - Postman (API testing)
+- Vercle
 
 ---
 
