@@ -76,7 +76,7 @@ export const deleteCard = asynchandler(async (req, res) => {
     return res.status(403).json({ message: "You are not authorized to delete this card." });
   }
 
-  await card.remove();
+  await Card.findByIdAndDelete(id);
   return res.status(200).json({ message: "Card deleted successfully." });
 });
 

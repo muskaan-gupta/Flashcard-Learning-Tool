@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
-import { Heart, Trash } from "lucide-react";
+import { Heart, Trash, User } from "lucide-react";
 import { useToast } from "../hooks/use-toast";
 import axiosInstance from "../utils/axiosInstance";
 
@@ -45,6 +45,26 @@ const MyCards = () => {
         });
       }
     };
+    const handleLike = async (id) => {
+      try {
+        console.log("Liking or Unlike card with ID:", id);
+        await axiosInstance.post(`/cards/${id}/like`);
+        setMyCards((prevCards) =>
+          prevCards.map((card) => (card._id === id ? { ...card, liked: !card.liked } : card))
+        );
+        toast({
+          title: "Card Liked",
+          description: "The card has been successfully liked.",
+        });
+      } catch (error) {
+        console.error("Error liking card:", error);
+        toast({
+          title: "Error",
+          description: "Failed to like the card. Please try again later.",
+          variant: "destructive",
+        });
+      }
+    };
     
 
   return (
@@ -53,7 +73,7 @@ const MyCards = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {myCards.map((card) => (
-          <Card key={card._id} className="bg-gradient-to-b from-blue-200 to-white-200 shadow-md rounded-lg">
+          <Card key={card._id} className="bg-gradient-to-b from-blue-200 to-purple-100 shadow-md rounded-lg">
             <CardHeader className="text-2xl font-semibold">
               <CardTitle>{card.title}</CardTitle>
             </CardHeader>
@@ -64,8 +84,13 @@ const MyCards = () => {
 
             <CardFooter className="flex justify-between">
               <div className="flex gap-4">
-                <Button variant="ghost" size="icon">
-                  <Heart className="h-4 w-4" />
+                <Button variant="ghost" size="icon" onClick={() => handleLike(card._id)}>
+
+                  {card.likes.includes(JSON.parse(localStorage.getItem("user"))?._id) ? (
+                    <Heart className="h-4 w-4 text-bold  " fill="red" />
+                  ) : (
+                    <Heart className="h-4 w-4" />
+                  )}
                 </Button>
                
               </div>

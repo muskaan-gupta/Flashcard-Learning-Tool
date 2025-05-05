@@ -9,10 +9,10 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center auth-gradient p-4">
       <div className="text-center max-w-3xl mx-auto">
-        <h1 className="text-5xl font-bold mb-4 tracking-tight text-blue-900">
+        <h1 className="text-5xl font-bold mb-4 tracking-tight text-black-900">
           FlashLearn
         </h1>
-        <p className="text-xl text-muted-foreground mb-8">
+        <p className="text-xl font-bold text-muted-foreground mb-8">
           Your personal flashcard learning assistant. Master any subject with our intelligent flashcard system.
         </p>
 

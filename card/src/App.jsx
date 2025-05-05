@@ -11,6 +11,7 @@ import DashboardHome from "./components/Dashboard/dashboardhome";
 import Profile from "./components/Profile/Profile";
 import MyCards from "./components/MyCard";
 import CreateCard from "./components/CreateCard";
+import Explore from "./components/Explore";
 
 
 
@@ -31,6 +32,7 @@ const App = () => (
             <Route path="profile" element={<Profile />} />
             <Route path="my-cards" element={<MyCards />} />
             <Route path="create-card" element={<CreateCard />} />
+            <Route path="explore" element={<Explore/>} />
           </Route>
         </Routes>
       </BrowserRouter>

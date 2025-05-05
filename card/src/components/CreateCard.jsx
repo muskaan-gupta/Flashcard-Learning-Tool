@@ -46,7 +46,7 @@ const CreateCard = () => {
       {/* Flip Preview */}
       <div className="flex justify-center">
         <div className="group w-64 h-40 perspective">
-          <div className="relative w-full h-full duration-700 transform-style preserve-3d group-hover:rotate-y-180">
+          <div className="relative w-full h-full duration-700 transform-style preserve-3d ">
             {/* Front Side */}
             <div className="absolute w-full h-full bg-white border rounded-xl shadow-md p-4 backface-hidden flex flex-col justify-center">
               <h2 className="text-lg font-semibold text-center">{cardData.title || "Title"}</h2>
@@ -61,6 +61,7 @@ const CreateCard = () => {
           </div>
         </div>
       </div>
+
 
       {/* Card Form */}
       <Card>
@@ -98,7 +99,7 @@ const CreateCard = () => {
             />
           </div>
 
-          <Button onClick={handleCreate} className="w-full">
+          <Button onClick={handleCreate} className="w-full bg-blue-600 hover-bg-blue-100">
             Create Card
           </Button>
         </CardContent>

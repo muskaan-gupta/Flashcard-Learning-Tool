@@ -10,10 +10,10 @@ const FlipCard = ({ frontContent, backContent }) => {
       onMouseLeave={() => setFlipped(false)}
     >
       <div className={`relative w-full h-full  flip-card ${flipped ? "flipped" : ""}`}>
-        <div className="flip-card-front bg-gradient-to-b from-blue-400 to-white-100  text-center justify-center rounded-lg shadow-md p-2">
+        <div className="flip-card-front bg-gradient-to-b from-blue-400 to-purple-200  text-center justify-center rounded-lg shadow-md p-2  font-bold ">
           {frontContent}
         </div>
-        <div className="flip-card-back bg-gradient-to-b from-blue-400 to-white-100 text-black items-center justify-center rounded-lg shadow-md p-2">
+        <div className="flip-card-back bg-gradient-to-b from-purple-300 to-blue-200 text-black  font-bold items-center justify-center rounded-lg shadow-md p-2">
           {backContent}
         </div>
       </div>

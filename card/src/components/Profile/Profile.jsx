@@ -88,18 +88,18 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-800 to-white-200 p-6 md:p-12">
+    <div className="min-h-screen p-6 md:p-12">
       <div className="max-w-4xl mx-auto space-y-8 bg-white shadow-lg rounded-lg p-6 md:p-12">
       <h1 className="text-4xl font-bold">Profile Settings</h1>
 
-      <Card className="bg-gradient-to-b from-blue-200 to-white-200">
+      <Card className="bg-gradient-to-b from-purple-200 to-blue-200">
         <CardHeader>
           <CardTitle>Profile Picture</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center space-x-4">
             <Avatar className="h-24 w-24">
-              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarImage src="https://png.pngtree.com/png-clipart/20230102/original/pngtree-girl-with-headphones-png-image_8855192.png" />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
             <Button className="bg-blue-800 text-white hover:bg-blue-100">Upload New Picture</Button>
@@ -107,12 +107,12 @@ const Profile = () => {
         </CardContent>
       </Card>
 
-      <Card className="bg-gradient-to-b from-blue-200 to-white-200 hover:bg-white-200 transition duration-300 ease-in-out">
+      <Card className="bg-gradient-to-b from-blue-200 to-white-200">
         <CardHeader>
           <CardTitle>Personal Information</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="space-y-2">
+          <div className="space-y-2 hover:bg-white ">
             <Label htmlFor="username">UserName</Label>
             <Input
               id="username"
@@ -123,7 +123,7 @@ const Profile = () => {
               // disabled // Disable editing for username
             />
           </div>
-          <div className="space-y-2">
+          <div className="space-y-2 hover:bg-white">
             <Label htmlFor="fullname">Full Name</Label>
             <Input
               id="fullname"
@@ -134,7 +134,7 @@ const Profile = () => {
             />
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-2 hover:bg-white">
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
@@ -147,7 +147,7 @@ const Profile = () => {
             />
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-2 hover:bg-white">
             <Label htmlFor="bio">Bio</Label>
             <Input
               id="bio"
@@ -158,7 +158,7 @@ const Profile = () => {
             />
           </div>
 
-          <Button onClick={handleSave} className="w-full bg-blue-800 text-white hover:bg-blue-150">
+          <Button onClick={handleSave} className="w-full bg-blue-800 text-white hover:bg-blue-100">
             Save Changes
           </Button>
         </CardContent>

@@ -109,7 +109,7 @@ const Signup = () => {
             placeholder="you@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="focus-ring"
+            className="focus-ring" 
             autoComplete="email"
             required
           />
