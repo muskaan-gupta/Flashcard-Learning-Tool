@@ -40,7 +40,7 @@ const DashboardHome = () => {
 
   return (
     <div className="space-y-6 pb-20 ">
-      <div className="bg-gradient-to-r from-blue-500 to-purple-300 text-white p-6 rounded-lg shadow-md transform transition-transform hover:scale-100 hover:shadow-[0_0_20px_5px_rgba(59,130,246,0.7)]">
+      <div className="bg-gradient-to-r from-blue-500 to-purple-300 text-white p-6 rounded-lg mt-20 shadow-md transform transition-transform hover:scale-100 hover:shadow-[0_0_20px_5px_rgba(59,130,246,0.7)]">
   <h1 className="text-4xl font-bold">Welcome Back!</h1>
   <p className="text-lg mt-2">Keep learning and growing every day!</p>
 </div>
