@@ -2,17 +2,20 @@
   "name": "card",
   "version": "1.0.0",
   "description": "FlashCard Learning tool",
-  "main": "eslint.config.js",
+  "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vite"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Muskan Gupta",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "vite": "^6.3.3"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.4",
@@ -38,7 +41,6 @@
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.2.0",
     "tailwind-variants": "^1.0.0",
-    "tailwindcss-animate": "^1.0.7",
-    "vite": "^6.3.3"
+    "tailwindcss-animate": "^1.0.7"
   }
 }
