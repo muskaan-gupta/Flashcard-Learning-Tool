@@ -6,7 +6,7 @@ import cardRoutes from "./routes/card.route.js";
 
 const app = express();
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: [process.env.CLIENT_URI_PUBLIC, process.env.CLIENT_URI_LOCAL],
   methods: ["POST", "GET", "PUT", "DELETE", "PATCH"],
   credentials: true, // allows cookies and authorization headers
 };
