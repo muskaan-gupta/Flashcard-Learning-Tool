@@ -113,7 +113,7 @@ const DashboardLayout = () => {
           <div className="fixed inset-0 z-50 bg-black/50 flex justify-end">
             <div className="w-64 bg-gradient-to-b from-blue-600 to-white-200 shadow-lg h-full flex flex-col">
               <button
-                className="self-end p-4 text-white"
+                className="absolute top-2 right-2 md:top-4 md:right-4 p-2 rounded-full bg-blue-500 text-white shadow-md z-50"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <X size={24} />
@@ -125,7 +125,7 @@ const DashboardLayout = () => {
                   </SidebarGroupLabel>
                   <SidebarGroupContent>
                     <SidebarMenu>
-                    {menuItems.map((item) => {
+                    {menuItems.map((item) => { 
                         const isActive = location.pathname === item.path;
                         return (
                           <SidebarMenuItem key={item.path}>
