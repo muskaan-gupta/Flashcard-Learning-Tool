@@ -87,7 +87,7 @@ const Signup = () => {
       subtitle="Sign up to start your learning journey"
     >
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="space-y-2">
+        <div className="space-y-2 text-left">
           <Label htmlFor="username">UserName</Label>
           <Input
             id="username"
@@ -101,7 +101,7 @@ const Signup = () => {
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 text-left">
           <Label htmlFor="signup-email">Email</Label>
           <Input
             id="signup-email"
@@ -115,7 +115,7 @@ const Signup = () => {
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 text-left">
           <Label htmlFor="signup-password">Password</Label>
           <div className="relative">
             <Input

@@ -13,6 +13,9 @@ const AuthLayout = ({ children, title, subtitle }) => {
           <p className="text-sm text-muted-foreground">
             Your personal flashcard learning assistant
           </p>
+          <p className="text-sm text-muted-foreground">
+            Try Demo Sign-in with <strong>email:guest@gmail.com </strong> and <strong> password: 12345678</strong>
+          </p>
         </div>
         <Card className="card-shadow card-transition hover:bg-gradient-to-b from-blue-300 to-white">
           <div className="p-6">

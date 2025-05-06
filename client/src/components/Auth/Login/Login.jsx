@@ -67,12 +67,15 @@ const Login = () => {
   };
 
   return (
+    
+     
     <AuthLayout 
       title="Welcome back" 
       subtitle="Sign in to your account to continue"
     >
+
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="space-y-2">
+        <div className="space-y-2 text-left">
           <Label htmlFor="email">Email</Label>
           <Input
             id="email"
