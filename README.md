@@ -3,11 +3,17 @@ FlashLearn is a **responsive study tool** built with flip-style flashcards to he
 
 ## ✨ Features
 
+
 ### 🧠 Flashcards
 - Create flashcards with questions and answers
 - Flip animation for learning through active recall
 - Like your own cards for marking important ones
 - Delete cards you no longer need
+
+### 🤖 Demo Login
+- Provided a email and password to every user
+- Try every feature without Sign-Up
+  
 
 ### 🔍 Explore Page
 - View **all flashcards created by any user**
