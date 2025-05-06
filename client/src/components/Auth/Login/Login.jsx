@@ -71,6 +71,8 @@ const Login = () => {
       title="Welcome back" 
       subtitle="Sign in to your account to continue"
     >
+      <h3> --Try Demo Sign-In -- </h3>
+      <h3> email: guest@gmail.com, Password: 12345678</h3>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
