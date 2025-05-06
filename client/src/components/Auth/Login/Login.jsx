@@ -71,11 +71,11 @@ const Login = () => {
       title="Welcome back" 
       subtitle="Sign in to your account to continue"
     >
-      <h3> --Try Demo Sign-In -- </h3>
-      <h3> email: guest@gmail.com, Password: 12345678</h3>
+      <h4> --Try Demo Sign-In -- </h4>
+      <h4> email: guest@gmail.com, Password: 12345678</h4>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
+        <div className="space-y-2 ">
+          <Label htmlFor="email" className="text-left">Email</Label>
           <Input
             id="email"
             type="email"
